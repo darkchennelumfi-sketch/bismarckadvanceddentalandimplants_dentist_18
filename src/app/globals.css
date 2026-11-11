@@ -1,0 +1,334 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-fraunces);
+
+  --color-cream: #f7f2e8;
+  --color-bone: #efe6d6;
+  --color-sand: #e4d6bf;
+  --color-ink: #14251f;
+  --color-pine: #17382f;
+  --color-pine-deep: #0d2520;
+  --color-sage: #a9bcaf;
+  --color-copper: #9f4e30;
+  --color-copper-dark: #86402a;
+  --color-copper-soft: #e4ae8c;
+  --color-line: #d9cdb9;
+
+  --shadow-soft: 0 24px 60px -30px rgba(20, 37, 31, 0.35);
+  --shadow-card: 0 30px 80px -44px rgba(20, 37, 31, 0.45);
+}
+
+:root {
+  --page-gutter: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+* {
+  border-color: color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, sans-serif;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-copper);
+  color: var(--color-cream);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+[id] {
+  scroll-margin-top: 7rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-copper);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 120;
+  transform: translateY(-200%);
+  transition: transform 200ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.container-x {
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: 980px;
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-copper);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 2rem;
+  height: 1px;
+  background: currentColor;
+}
+
+.eyebrow-light {
+  color: var(--color-copper-soft);
+}
+
+.display {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-weight: 350;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+}
+
+.arch {
+  border-radius: 999px 999px 1.75rem 1.75rem;
+}
+
+.arch-sm {
+  border-radius: 999px 999px 1rem 1rem;
+}
+
+.link-line {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.link-line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-line:hover::after,
+.link-line:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(20, 37, 31, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 37, 31, 0.055) 1px, transparent 1px);
+  background-size: 76px 76px;
+}
+
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(247, 242, 232, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(247, 242, 232, 0.07) 1px, transparent 1px);
+  background-size: 76px 76px;
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.028;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.prose-clinic p {
+  margin-bottom: 1.35rem;
+  color: color-mix(in srgb, var(--color-ink) 72%, transparent);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+.prose-clinic p:first-of-type {
+  color: var(--color-ink);
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
+
+.prose-clinic p:last-child {
+  margin-bottom: 0;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes sheet-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes slow-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes grow-line {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-slow-spin {
+  animation: slow-spin 36s linear infinite;
+}
+
+.animate-float {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-marquee,
+  .animate-slow-spin,
+  .animate-float {
+    animation: none !important;
+  }
+}
